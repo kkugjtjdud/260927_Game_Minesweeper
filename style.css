@@ -8,7 +8,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif; /* 모던한 구글 폰트 적용 */
+    font-family: 'Inter', sans-serif;
+    /* 모던한 구글 폰트 적용 */
 }
 
 /* 화면 전체 배경 설정 (세련된 다크 그라데이션) */
@@ -26,10 +27,13 @@ body {
     background-color: #2a2a3e;
     padding: 30px;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* 그림자 효과로 입체감 부여 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* 그림자 효과로 입체감 부여 */
     text-align: center;
-    position: relative; /* 게임 메시지를 띄우기 위해 기준점 설정 */
-    overflow: hidden; /* 모서리 밖으로 튀어나가는 것을 막음 */
+    position: relative;
+    /* 게임 메시지를 띄우기 위해 기준점 설정 */
+    overflow: hidden;
+    /* 모서리 밖으로 튀어나가는 것을 막음 */
 }
 
 /* 제목 스타일 */
@@ -50,7 +54,12 @@ body {
     padding: 15px 20px;
     border-radius: 12px;
     margin-bottom: 20px;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+
+    /* 수정됨: 게임 오버 화면이 떠도 이 패널은 클릭 가능하도록 가장 위로 올립니다. */
+    position: relative;
+    z-index: 20;
+    /* 게임 메시지(10)보다 높게 설정하여 클릭을 가로채지 않도록 함 */
 }
 
 /* 정보 박스(지뢰, 시간) 스타일 */
@@ -70,7 +79,8 @@ body {
     font-size: 24px;
     font-weight: 600;
     color: #ff4a4a;
-    font-family: monospace; /* 숫자는 폭이 일정한 폰트 사용 */
+    font-family: monospace;
+    /* 숫자는 폭이 일정한 폰트 사용 */
 }
 
 /* 재시작 버튼 스타일 */
@@ -83,7 +93,8 @@ body {
     font-weight: 600;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s; /* 마우스 오버/클릭 시 애니메이션 */
+    transition: background-color 0.2s, transform 0.1s;
+    /* 마우스 오버/클릭 시 애니메이션 */
 }
 
 .restart-btn:hover {
@@ -91,7 +102,8 @@ body {
 }
 
 .restart-btn:active {
-    transform: scale(0.95); /* 클릭 시 살짝 작아지는 효과 */
+    transform: scale(0.95);
+    /* 클릭 시 살짝 작아지는 효과 */
 }
 
 /* 게임 보드 (CSS Grid를 사용하여 16x16 배치) */
@@ -101,7 +113,8 @@ body {
     grid-template-columns: repeat(16, 30px);
     /* 16개의 행을 동일한 크기(30px)로 생성 */
     grid-template-rows: repeat(16, 30px);
-    gap: 2px; /* 칸 사이의 간격 */
+    gap: 2px;
+    /* 칸 사이의 간격 */
     background-color: #1e1e2f;
     padding: 10px;
     border-radius: 8px;
@@ -117,7 +130,8 @@ body {
     align-items: center;
     font-weight: 600;
     font-size: 16px;
-    transition: background-color 0.2s; /* 부드러운 색상 변화 */
+    transition: background-color 0.2s;
+    /* 부드러운 색상 변화 */
 }
 
 /* 마우스를 올렸을 때 칸의 색상 변경 */
@@ -128,13 +142,16 @@ body {
 /* 열린 칸 스타일 */
 .cell.revealed {
     background-color: #2a2a3e;
-    cursor: default; /* 클릭 불가능한 커서 모양으로 변경 */
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); /* 안으로 들어간 느낌 */
+    cursor: default;
+    /* 클릭 불가능한 커서 모양으로 변경 */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* 안으로 들어간 느낌 */
 }
 
 /* 지뢰 칸 스타일 */
 .cell.mine {
-    background-color: #ff4a4a !important; /* 지뢰는 붉은색 강조 */
+    background-color: #ff4a4a !important;
+    /* 지뢰는 붉은색 강조 */
     color: white;
 }
 
@@ -145,7 +162,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(30, 30, 47, 0.85); /* 반투명 배경 */
+    background-color: rgba(30, 30, 47, 0.85);
+    /* 반투명 배경 */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -158,7 +176,7 @@ body {
     font-size: 32px;
     color: #ffffff;
     margin-bottom: 20px;
-    text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* hidden 클래스가 있으면 숨김 처리 */
@@ -167,11 +185,34 @@ body {
 }
 
 /* 지뢰 개수에 따른 텍스트 색상 (예: 1=파랑, 2=초록, 3=빨강...) */
-.color-1 { color: #4a90e2; }
-.color-2 { color: #50e3c2; }
-.color-3 { color: #ff5e5e; }
-.color-4 { color: #b862ff; }
-.color-5 { color: #f5a623; }
-.color-6 { color: #4ae2b1; }
-.color-7 { color: #000000; }
-.color-8 { color: #666666; }
+.color-1 {
+    color: #4a90e2;
+}
+
+.color-2 {
+    color: #50e3c2;
+}
+
+.color-3 {
+    color: #ff5e5e;
+}
+
+.color-4 {
+    color: #b862ff;
+}
+
+.color-5 {
+    color: #f5a623;
+}
+
+.color-6 {
+    color: #4ae2b1;
+}
+
+.color-7 {
+    color: #000000;
+}
+
+.color-8 {
+    color: #666666;
+}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,21 +10,22 @@
     <!-- 우리가 작성할 스타일 시트를 불러옵니다 -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="game-container">
         <!-- 게임의 제목 부분 -->
         <h1 class="title">지뢰찾기</h1>
-        
+
         <!-- 게임 상태를 보여주는 상단 패널 (남은 지뢰 수, 재시작 버튼, 타이머) -->
         <div class="header-panel">
             <div class="info-box">
                 <span class="label">지뢰</span>
                 <span id="mine-count" class="value">40</span>
             </div>
-            
+
             <!-- 재시작 버튼 -->
             <button id="restart-btn" class="restart-btn">재시작 🔄</button>
-            
+
             <div class="info-box">
                 <span class="label">시간</span>
                 <span id="timer" class="value">000</span>
@@ -32,7 +34,7 @@
 
         <!-- 실제 지뢰찾기 칸들이 들어갈 게임판 -->
         <div id="game-board" class="game-board"></div>
-        
+
         <!-- 게임 오버나 클리어 시 나타날 메시지 영역 -->
         <div id="game-message" class="game-message hidden">
             <h2 id="message-text">게임 오버!</h2>
@@ -42,4 +44,5 @@
     <!-- 우리가 작성할 자바스크립트 로직을 불러옵니다 -->
     <script src="script.js"></script>
 </body>
+
 </html>
